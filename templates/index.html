@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Resume Parser</title>
+    <style>
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes typing {
+            0%, 16% { content: "f"; }
+            2%, 16% { content: "fa"; }
+            4%, 16% { content: "fas"; }
+            6%, 16% { content: "fast"; }
+            18%, 19% { content: "fas"; }
+            19%, 20% { content: "fa"; }
+            20%, 21% { content: "f"; }
+            21%, 22% { content: ""; }
+
+            22%, 38% { content: "a"; }
+            24%, 38% { content: "ac"; }
+            26%, 38% { content: "acc"; }
+            28%, 38% { content: "accu"; }
+            30%, 38% { content: "accur"; }
+            32%, 38% { content: "accura"; }
+            34%, 38% { content: "accurat"; }
+            36%, 38% { content: "accurate"; }
+            40%, 41% { content: "accurat"; }
+            41%, 42% { content: "accura"; }
+            42%, 43% { content: "accur"; }
+            43%, 44% { content: "accu"; }
+            44%, 45% { content: "acc"; }
+            45%, 46% { content: "ac"; }
+            46%, 47% { content: "a"; }
+            47%, 48% { content: ""; }
+
+            48%, 64% { content: "e"; }
+            50%, 64% { content: "ef"; }
+            52%, 64% { content: "eff"; }
+            54%, 64% { content: "effo"; }
+            56%, 64% { content: "effor"; }
+            58%, 64% { content: "effort"; }
+            60%, 64% { content: "effortl"; }
+            62%, 64% { content: "effortle"; }
+            64%, 82% { content: "effortles"; }
+            66%, 82% { content: "effortless"; }
+            84%, 85% { content: "effortles"; }
+            85%, 86% { content: "effortle"; }
+            86%, 87% { content: "effortl"; }
+            87%, 88% { content: "effort"; }
+            88%, 89% { content: "effor"; }
+            89%, 90% { content: "effo"; }
+            90%, 91% { content: "eff"; }
+            91%, 92% { content: "ef"; }
+            92%, 93% { content: "e"; }
+            93%, 100% { content: ""; }
+        }
+        @keyframes blink {
+            50% { border-color: transparent }
+        }
+        .typing-text::before {
+            content: "";
+            animation: typing 12s linear infinite;
+        }
+        .typing-text {
+            display: inline-block;
+            color: #dc2626;
+            border-right: .10em solid #dc2626;
+            white-space: nowrap;
+            margin: 0;
+            animation: blink .75s step-end infinite;
+        }
+        .animated-bg {
+            background: linear-gradient(225deg, #000000, #1a0000, #330000, #1a0000, #000000);
+            background-size: 400% 400%;
+            animation: gradientFlow 15s ease infinite;
+        }
+        .hover-scale {
+            transition: transform 0.3s ease;
+        }
+        .hover-scale:hover {
+            transform: scale(1.05);
+        }
+        @keyframes pulse {
+            0% { opacity: 0.4; }
+            50% { opacity: 0.7; }
+            100% { opacity: 0.4; }
+        }
+        .pulse-animate {
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        /* --- ✨ New Animations for Results Box --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes borderGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(220, 38, 38, 0.2), 0 0 5px rgba(220, 38, 38, 0.1); }
+            50% { box-shadow: 0 0 30px rgba(220, 38, 38, 0.4), 0 0 10px rgba(220, 38, 38, 0.3); }
+        }
+        .results-box {
+            /* Apply the new animations */
+            animation: fadeIn 1s ease-out forwards, borderGlow 1s linear infinite;
+        }
+    </style>
+</head>
+<body class="animated-bg">
+    <div class="relative isolate overflow-hidden">
+        <div class="absolute inset-0 -z-10 overflow-hidden">
+            <div class="absolute inset-0">
+                <div class="absolute top-1/4 left-1/4 w-48 h-48 bg-red-600/10 rounded-full blur-3xl animate-float-slow"></div>
+                <div class="absolute top-3/4 right-1/4 w-64 h-64 bg-red-900/10 rounded-full blur-3xl animate-float-medium"></div>
+                <div class="absolute bottom-1/4 left-1/2 w-56 h-56 bg-red-800/10 rounded-full blur-3xl animate-float-fast"></div>
+            </div>
+            <svg class="absolute inset-0 h-full w-full" aria-hidden="true">
+                <defs>
+                    <pattern id="hexagon-pattern" x="0" y="0" width="50" height="86.6" patternUnits="userSpaceOnUse" patternTransform="rotate(12)">
+                        <path d="M25,0 L50,14.4 L50,43.2 L25,57.6 L0,43.2 L0,14.4 Z" fill="none" stroke="rgba(220, 38, 38, 0.1)" stroke-width="1"/>
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#hexagon-pattern)"/>
+            </svg>
+            <div class="absolute top-0 left-0 w-full h-full">
+                <div class="absolute top-1/3 left-1/5 w-32 h-32 bg-gradient-to-r from-red-600/20 to-transparent rounded-full blur-2xl animate-pulse-slow"></div>
+                <div class="absolute bottom-1/4 right-1/3 w-40 h-40 bg-gradient-to-l from-red-900/20 to-transparent rounded-full blur-2xl animate-pulse-medium"></div>
+            </div>
+        </div>
+        <style>
+            @keyframes float-slow {
+                0%, 100% { transform: translate(0, 0); }
+                50% { transform: translate(-20px, 20px); }
+            }
+            @keyframes float-medium {
+                0%, 100% { transform: translate(0, 0); }
+                50% { transform: translate(20px, -20px); }
+            }
+            @keyframes float-fast {
+                0%, 100% { transform: translate(0, 0); }
+                50% { transform: translate(-15px, -15px); }
+            }
+            @keyframes pulse-slow {
+                0%, 100% { opacity: 0.3; }
+                50% { opacity: 0.6; }
+            }
+            @keyframes pulse-medium {
+                0%, 100% { opacity: 0.4; }
+                50% { opacity: 0.7; }
+            }
+            .animate-float-slow {
+                animation: float-slow 8s ease-in-out infinite;
+            }
+            .animate-float-medium {
+                animation: float-medium 6s ease-in-out infinite;
+            }
+            .animate-float-fast {
+                animation: float-fast 4s ease-in-out infinite;
+            }
+            .animate-pulse-slow {
+                animation: pulse-slow 6s ease-in-out infinite;
+            }
+            .animate-pulse-medium {
+                animation: pulse-medium 4s ease-in-out infinite;
+            }
+        </style>
+        <div class="absolute left-[calc(50%-4rem)] top-10 -z-10 transform-gpu blur-3xl sm:left-[calc(50%-18rem)] lg:left-48 lg:top-[calc(50%-30rem)] xl:left-[calc(50%-24rem)]"
+            aria-hidden="true">
+            <div class="aspect-[1108/632] w-[69.25rem] bg-gradient-to-r from-red-600 via-red-900 to-black opacity-20 animate-pulse-slow"
+                style="clip-path: polygon(74% 53%, 92% 12%, 100% 46%, 97% 82%, 93% 85%, 76% 64%, 55% 48%, 47% 49%, 45% 63%, 50% 87%, 21% 64%, 0% 100%, 5% 51%, 21% 64%, 59% 0%, 74% 53%)">
+            </div>
+        </div>
+        <div class="mx-auto max-w-7xl px-6 pb-24 pt-10 sm:pb-32 lg:flex lg:px-8 lg:py-40">
+            <div class="mx-auto max-w-2xl flex-shrink-0 lg:mx-0 lg:max-w-xl lg:pt-8">
+                <div class="mt-8 sm:mt-12 lg:mt-8">
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-white to-red-600 inline-block text-transparent bg-clip-text hover:scale-105 transition-transform duration-300 tracking-tight">
+                        AI-Resume Parser
+                    </h1>
+                </div>
+                <div class="mt-12 sm:mt-16 lg:mt-12">
+                    <a href="#" class="inline-flex space-x-6">
+                        <span
+                            class="rounded-full bg-red-500/10 px-3 py-1 text-sm font-semibold leading-6 text-red-400 ring-1 ring-inset ring-red-500/20">✨
+Built for accuracy</span>
+                        <span class="inline-flex items-center space-x-2 text-sm font-medium leading-6 text-gray-300">
+                            <span>Upload Your Resume</span>
+                            <svg class="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd"
+                                    d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </span>
+                    </a>
+                </div>
+                <h1 class="mt-10 text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white">Accelerate hiring with intelligent resume parsing — <span class="typing-text"></span></h1>
+                <p class="mt-6 text-base md:text-lg leading-7 md:leading-8 text-gray-300">Leverage the power of AI-driven resume parsing to streamline recruitment, boost decision-making accuracy, and uncover top talent faster than ever.</p>
+                <div class="mt-10 flex items-center gap-x-6">
+                    <form action="/process" method="post" enctype="multipart/form-data" class="w-full max-w-2xl">
+                        <div class="mt-10 flex flex-col justify-start items-start sm:flex-row sm:items-center gap-y-4 sm:gap-y-0 gap-x-6">
+                            <button type="submit"
+                                class="hover-scale w-full sm:w-auto my-2 bg-gradient-to-r from-red-600 to-red-900 px-6 md:px-8 rounded-2xl py-2.5 text-sm font-semibold text-white shadow-lg hover:shadow-red-500/20 transition-all duration-300">Process</button>
+                            <input type="file" name="pdf_doc" id="pdf_doc" accept=".pdf" class="hover-scale drop-shadow-md bg-black/40 font-semibold leading-6 text-white border border-red-800/50 py-2 px-4 rounded-2xl block w-full text-sm
+                                        file:mr-4 file:py-2 file:px-4
+                                        file:rounded-full file:border-0
+                                        file:text-sm file:font-semibold
+                                        file:bg-gradient-to-r file:from-red-900 file:to-red-950 file:text-red-100
+                                        hover:border-red-500 transition-all duration-300
+                                        focus:outline-none focus:border-red-400 focus:ring-2 focus:ring-red-500/50">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="mx-auto mt-16 flex max-w-2xl sm:mt-24 lg:ml-10 lg:mr-0 lg:mt-40 lg:max-w-none lg:flex-none xl:ml-32">
+                <div class="max-w-3xl flex-none sm:max-w-5xl lg:max-w-none">
+                    <img src="https://res.cloudinary.com/dtsuvx8dz/image/upload/v1716357077/o1imiun4wwcpia9uucgs.gif"
+                        alt="App screenshot" width="2432" height="1442"
+                        class="w-full sm:w-[15rem] md:w-[20rem] lg:w-[25rem] rounded-md bg-white/5 shadow-2xl ring-1 ring-white/10">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="w-full flex items-center justify-center p-4 sm:p-6 lg:p-8">
+        {% if data %}
+        <div class="results-box w-full max-w-4xl bg-black/40 backdrop-blur-sm rounded-2xl p-4 sm:p-6 md:p-8 ring-1 ring-red-500/30">
+            <h2 class="text-xl sm:text-2xl font-bold text-white mb-4 border-b border-red-500/40 pb-3">
+                Parsing Results
+            </h2>
+            <div id="dictionaryValues" class="text-sm sm:text-base overflow-x-auto">
+                </div>
+        </div>
+        {% endif %}
+    </div>
+
+    {% if data %}
+    <script>
+        const parsedData = {{ data|tojson }};
+
+        function generateHTML(data) {
+            let html = '<div class="pl-4 border-l-2 border-red-600/30">';
+            for (const key in data) {
+                if (data.hasOwnProperty(key)) {
+                    html += '<div class="mt-3">';
+                    html += '<strong class="text-red-400 font-semibold">' + key + ': </strong>';
+                    if (typeof data[key] === 'object' && data[key] !== null && !Array.isArray(data[key])) {
+                        html += generateHTML(data[key]);
+                    } else {
+                        html += '<span class="text-gray-200">' + JSON.stringify(data[key]).replace(/"/g, '') + '</span>';
+                    }
+                    html += '</div>';
+                }
+            }
+            html += '</div>';
+            return html;
+        }
+
+        function displayDictionaryValues(data) {
+            const dictionaryValuesDiv = document.getElementById("dictionaryValues");
+            if (dictionaryValuesDiv) {
+                dictionaryValuesDiv.innerHTML = generateHTML(data);
+            }
+        }
+        document.addEventListener('DOMContentLoaded', (event) => {
+            displayDictionaryValues(parsedData);
+        });
+    </script>
+    {% endif %}
+    <footer class="w-full py-8 mt-12 border-t border-red-900/20">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <p class="text-lg text-gray-400">
+                <span class="typing-text-footer"></span>
+            </p>
+            <p class="mt-4 text-sm text-gray-500">
+                © 2025 Anirban Das. All rights reserved. <span class="text-red-600">AI PARSER</span>
+            </p>
+        </div>
+    </footer>
+
+    <style>
+        @keyframes typingFooter {
+            0%, 16% { content: "S"; }
+            2%, 16% { content: "Se"; }
+            4%, 16% { content: "Sea"; }
+            6%, 16% { content: "Seam"; }
+            8%, 16% { content: "Seaml"; }
+            10%, 16% { content: "Seamle"; }
+            12%, 16% { content: "Seamles"; }
+            14%, 16% { content: "Seamless"; }
+            18%, 19% { content: "Seamles"; }
+            19%, 20% { content: "Seamle"; }
+            20%, 21% { content: "Seaml"; }
+            21%, 22% { content: "Seam"; }
+            22%, 23% { content: "Sea"; }
+            23%, 24% { content: "Se"; }
+            24%, 25% { content: "S"; }
+            25%, 26% { content: ""; }
+
+            26%, 42% { content: "P"; }
+            28%, 42% { content: "Pr"; }
+            30%, 42% { content: "Pre"; }
+            32%, 42% { content: "Prec"; }
+            34%, 42% { content: "Preci"; }
+            36%, 42% { content: "Precis"; }
+            38%, 42% { content: "Precisi"; }
+            40%, 42% { content: "Precisio"; }
+            42%, 58% { content: "Precision"; }
+            44%, 45% { content: "Precisio"; }
+            45%, 46% { content: "Precisi"; }
+            46%, 47% { content: "Precis"; }
+            47%, 48% { content: "Preci"; }
+            48%, 49% { content: "Prec"; }
+            49%, 50% { content: "Pre"; }
+            50%, 51% { content: "Pr"; }
+            51%, 52% { content: "P"; }
+            52%, 53% { content: ""; }
+
+            53%, 69% { content: "R"; }
+            55%, 69% { content: "Re"; }
+            57%, 69% { content: "Rel"; }
+            59%, 69% { content: "Reli"; }
+            61%, 69% { content: "Relia"; }
+            63%, 69% { content: "Reliab"; }
+            65%, 69% { content: "Reliabl"; }
+            67%, 69% { content: "Reliable"; }
+            71%, 72% { content: "Reliabl"; }
+            72%, 73% { content: "Reliab"; }
+            73%, 74% { content: "Relia"; }
+            74%, 75% { content: "Reli"; }
+            75%, 76% { content: "Rel"; }
+            76%, 77% { content: "Re"; }
+            77%, 78% { content: "R"; }
+            78%, 100% { content: ""; }
+        }
+        .typing-text-footer {
+            display: inline-block;
+            color: #dc2626;
+            border-right: .10em solid #dc2626;
+            white-space: nowrap;
+            margin: 0;
+            animation: blink .75s step-end infinite;
+        }
+        .typing-text-footer::before {
+            content: "";
+            animation: typingFooter 12s linear infinite;
+        }
+    </style>
+</body>
+</html>
