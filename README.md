@@ -44,7 +44,7 @@ A user uploads a PDF through the web interface. The Flask server receives the fi
     ```bash
     flask run --port=8000
     ```
-    Access the parser at `http://127.0.0.1:8000`.
+    Access the parser at `http://127.0.0.1:8000`. 
 
 ### 🔐 Security
 Security is handled through PDF-only file validation, secure API key management using `.env` files, protected file storage, and robust error handling for invalid inputs.
